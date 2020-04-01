@@ -1,0 +1,7 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3" *ngFor="let url of img; trackBy: changeTrack">
+      <img [src]="url" alt="photo" width="100%" height="100%">
+    </div>
+  </div>
+</div>

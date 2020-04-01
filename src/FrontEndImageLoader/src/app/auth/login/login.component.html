@@ -1,0 +1,50 @@
+
+<div class="container col-md-6">
+  <form [formGroup]="formAuth" (ngSubmit)="OnSubmit()">
+    <fieldset>
+      <legend>Вход</legend>
+      <div
+        [ngClass]="{'alert alert-danger': formAuth.get('email').invalid && formAuth.get('email').touched}"
+        class="form-group">
+        <label for="email">Почта</label>
+        <input formControlName="email"
+               class="form-control"
+               id="email"
+               type="text"
+               placeholder="Введите почту">
+        <span *ngIf="formAuth.get('email').touched && formAuth.get('email').invalid"
+              class="form-help-text"
+        >
+        <span *ngIf="formAuth.get('email')['errors']['email']">
+          Введите корректный EMAIL
+        </span>
+        <span *ngIf="formAuth.get('email')['errors']['required']">
+          Поле EMAIL должно быть заполнено
+        </span>
+      </span>
+      </div>
+
+
+      <div class="form-group"
+           [ngClass]="{'alert alert-danger': formAuth.get('password').invalid && formAuth.get('password').touched}"
+      >
+        <label for="password">Пароль</label>
+        <input formControlName="password"
+               class="form-control"
+               id="password"
+               type="password"
+               placeholder="Введите пароль">
+        <span *ngIf="formAuth.get('password').touched && formAuth.get('password').invalid"
+              class="form-help-text"
+        >
+        <span *ngIf="formAuth.get('password')['errors']['required']">
+          Поле PASSWORD должно быть заполнено
+        </span>
+      </span>
+      </div>
+
+    </fieldset>
+    <button type="button" routerLink="" class="btn btn-primary mr-3">Назад</button>
+    <button [disabled]="!formAuth.valid" type="submit" class="btn btn-success">Войти</button>
+  </form>
+</div>

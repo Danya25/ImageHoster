@@ -1,0 +1,55 @@
+<div class="container col-md-6">
+  <form [formGroup]="formReg" (ngSubmit)="OnSubmit()">
+    <fieldset>
+      <legend>Регистрация</legend>
+      <span class="badge badge-success" *ngIf="isRegister">Регистрация прошла успешна</span>
+      <div
+        [ngClass]="{'alert alert-danger': formReg.get('email').invalid && formReg.get('email').touched}"
+        class="form-group">
+        <label for="email">Почта</label>
+        <input formControlName="email"
+               class="form-control"
+               id="email"
+               type="text"
+               placeholder="Введите почту">
+        <span *ngIf="formReg.get('email').touched && formReg.get('email').invalid"
+              class="form-help-text"
+        >
+        <span *ngIf="formReg.get('email')['errors']['forbiddenEmail']">Данный EMAIL занят</span>
+        <span *ngIf="formReg.get('email')['errors']['required']">
+          Поле EMAIL должно быть заполнено
+        </span>
+      </span>
+      </div>
+      <div class="form-group"
+           [ngClass]="{'alert alert-danger': formReg.get('pass').invalid && formReg.get('pass').touched}"
+      >
+        <label for="password">Пароль</label>
+        <input formControlName="pass"
+               class="form-control"
+               id="password"
+               type="password"
+               placeholder="Введите пароль">
+        <span *ngIf="formReg.get('pass').touched && formReg.get('pass').invalid"
+              class="form-help-text">
+        <span *ngIf="formReg.get('pass')['errors']['required']">
+          Поле PASSWORD должно быть заполнено
+        </span>
+      </span>
+      </div>
+
+      <div class="form-check"
+           [ngClass]="{'alert alert-danger': formReg.get('agree').invalid && formReg.get('agree').touched}">
+        <input formControlName="agree"
+               class="form-check-input"
+               id="checkB"
+               type="checkbox">
+        <label class="form-check-label" for="checkB">Согласен с правилами</label>
+
+      </div>
+
+    </fieldset>
+    <button type="button" routerLink="" class="btn btn-primary mr-3">Назад</button>
+    <button [disabled]="!formReg.valid" type="submit" class="btn btn-success">Регистрация</button>
+  </form>
+</div>
